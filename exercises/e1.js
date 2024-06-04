@@ -5,8 +5,15 @@
 
 export function getFirstTenNumbers() {
   // Your code goes here...
-
+  const numbers = [];
+  for (let i = 1; i <= 10; i++) {
+    numbers.push(i);
+  }
+  return numbers;
 }
+
+console.log(getFirstTenNumbers());
+
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-1"
