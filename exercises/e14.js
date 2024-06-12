@@ -7,33 +7,35 @@
 
 export function getClientsWithWrongBalance(array) {
   // Your code goes here...
-  return array.filter(account => {
-    const totalDeposits = account.deposits ? account.deposits.reduce((acc, deposit) => acc + deposit, 0) : 0;
-    const totalWithdrawals = account.withdrawals ? account.withdrawals.reduce((acc, withdrawal) => acc + withdrawal, 0) : 0;
-    const calculatedBalance = totalDeposits - totalWithdrawals;
-    return account.balance !== calculatedBalance;
-});
+  let result = [];
+
+  for (let i = 0; i < array.length; i++) {
+      let totalDeposits = 0;
+      let totalWithdrawals = 0;
+
+      if (array[i].deposits && array[i].deposits.length > 0) {
+          for (let j = 0; j < array[i].deposits.length; j++) {
+              totalDeposits += array[i].deposits[j];
+          }
+      }
+
+      if (array[i].withdrawals && array[i].withdrawals.length > 0) {
+          for (let k = 0; k < array[i].withdrawals.length; k++) {
+              totalWithdrawals += array[i].withdrawals[k];
+          }
+      }
+
+      let calculatedBalance = totalDeposits - totalWithdrawals;
+
+      if (array[i].balance !== calculatedBalance) {
+          result.push(array[i]);
+      }
+  }
+
+  return result;
 }
 
-export const bankAccounts = [
-  {
-    id: 1,
-    name: "Susan",
-    balance: 100.32,
-    deposits: [150, 30, 221],
-    withdrawals: [110, 70.68, 120],
-  },
-  { id: 2, name: "Morgan", balance: 1100.0, deposits: [1100] },
-  {
-    id: 3,
-    name: "Joshua",
-    balance: 18456.57,
-    deposits: [4000, 5000, 6000, 9200, 256.57],
-    withdrawals: [1500, 1400, 1500, 1500],
-  },
-  { id: 4, name: "Candy", balance: 0.0 },
-  { id: 5, name: "Phil", balance: 18, deposits: [100, 18], withdrawals: [100] },
-];
+
 
 
 
