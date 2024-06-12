@@ -6,7 +6,14 @@
 
 export function concatArrays(arr1, arr2) {
   // Your code goes here...
-
+  const concatenatedArray = [];
+  for (let element of arr1) {
+      concatenatedArray.push(element);
+  }
+  for (let element of arr2) {
+      concatenatedArray.push(element);
+  }
+  return concatenatedArray;
 }
 
 
