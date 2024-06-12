@@ -33,23 +33,18 @@ export function getAverage(array) {
 
 export function getStringSum(str) {
   // Your code goes here...
-  
   let total = 0;
 
-  // Regular expression to match individual digits in the string
-  const regex = /\d/g;
-  const matches = str.match(regex);
+    for (let i = 0; i < str.length; i++) {
+      
+        if (str[i] >= '0' && str[i] <= '9') {
 
-  if (matches) {
-      // Summing up all the integers found
-      total = matches.reduce((acc, curr) => acc + parseInt(curr), 0);
-  } else {
-      // No integers found, return 0
-      return 0;
-  }
-
-  return total;
+            total += str[i] - '0';
+        }
     }
+
+    return total;
+  }
   
   
 
