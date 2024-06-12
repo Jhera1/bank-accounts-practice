@@ -8,7 +8,6 @@ export function getClientsWithLetterInName(array, letter) {
   let result = [];
   let lowerLetter = '';
 
-  // Convert the letter to lowercase
   for (let i = 0; i < letter.length; i++) {
       if (letter[i] >= 'A' && letter[i] <= 'Z') {
           lowerLetter += String.fromCharCode(letter[i].charCodeAt(0) + 32);
@@ -20,7 +19,6 @@ export function getClientsWithLetterInName(array, letter) {
   for (let i = 0; i < array.length; i++) {
       let lowerName = '';
 
-      // Convert the name to lowercase
       for (let j = 0; j < array[i].name.length; j++) {
           if (array[i].name[j] >= 'A' && array[i].name[j] <= 'Z') {
               lowerName += String.fromCharCode(array[i].name[j].charCodeAt(0) + 32);
@@ -29,7 +27,6 @@ export function getClientsWithLetterInName(array, letter) {
           }
       }
 
-      // Check if the lowerName contains lowerLetter
       let containsLetter = false;
       for (let k = 0; k <= lowerName.length - lowerLetter.length; k++) {
           let match = true;
@@ -45,8 +42,8 @@ export function getClientsWithLetterInName(array, letter) {
           }
       }
 
-      // If the name contains the letter, add it to the result
       if (containsLetter) {
+
           result.push(array[i].name);
       }
   }
