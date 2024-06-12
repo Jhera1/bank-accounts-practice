@@ -5,30 +5,55 @@
 
 export function getClientsWithLetterInName(array, letter) {
   // Your code goes here...
-  return array.filter(account => account.name.toLowerCase().includes(letter.toLowerCase())).map(account => account.name);
+  let result = [];
+  let lowerLetter = '';
+
+  // Convert the letter to lowercase
+  for (let i = 0; i < letter.length; i++) {
+      if (letter[i] >= 'A' && letter[i] <= 'Z') {
+          lowerLetter += String.fromCharCode(letter[i].charCodeAt(0) + 32);
+      } else {
+          lowerLetter += letter[i];
+      }
+  }
+
+  for (let i = 0; i < array.length; i++) {
+      let lowerName = '';
+
+      // Convert the name to lowercase
+      for (let j = 0; j < array[i].name.length; j++) {
+          if (array[i].name[j] >= 'A' && array[i].name[j] <= 'Z') {
+              lowerName += String.fromCharCode(array[i].name[j].charCodeAt(0) + 32);
+          } else {
+              lowerName += array[i].name[j];
+          }
+      }
+
+      // Check if the lowerName contains lowerLetter
+      let containsLetter = false;
+      for (let k = 0; k <= lowerName.length - lowerLetter.length; k++) {
+          let match = true;
+          for (let l = 0; l < lowerLetter.length; l++) {
+              if (lowerName[k + l] !== lowerLetter[l]) {
+                  match = false;
+                  break;
+              }
+          }
+          if (match) {
+              containsLetter = true;
+              break;
+          }
+      }
+
+      // If the name contains the letter, add it to the result
+      if (containsLetter) {
+          result.push(array[i].name);
+      }
+  }
+
+  return result;
 }
 
-export const bankAccounts = [
-  {
-    id: 1,
-    name: "Susan",
-    balance: 100.32,
-    deposits: [150, 30, 221],
-    withdrawals: [110, 70.68, 120],
-  },
-  { id: 2, name: "Morgan", balance: 1100.0, deposits: [1100] },
-  {
-    id: 3,
-    name: "Joshua",
-    balance: 18456.57,
-    deposits: [4000, 5000, 6000, 9200, 256.57],
-    withdrawals: [1500, 1400, 1500, 1500],
-  },
-  { id: 4, name: "Candy", balance: 0.0 },
-  { id: 5, name: "Phil", balance: 18, deposits: [100, 18], withdrawals: [100] },
-];
-
-console.log(getClientsWithLetterInName(bankAccounts, 'e'));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-10"
