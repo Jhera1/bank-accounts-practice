@@ -15,7 +15,7 @@ export function getAllAccountsWithSumsOfDepositsLess2000(array) {
             const sumOfDeposits = account.deposits.reduce((acc, deposit) => acc + deposit, 0);
             return sumOfDeposits < 2000;
         } else {
-            return true; // Include accounts with no deposits
+            return true; 
         }
     });
 }
